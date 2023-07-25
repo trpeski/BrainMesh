@@ -6,3 +6,10 @@ def get_data_path (subject_p, recording_id_p) :
 
 def get_patient_seizures_path (subject_p) :
   return get_subject_directory(subject_p)+f'/seizures.edf'
+
+def count_word_occurrences(file_path, word):
+    count = 0
+    with open(file_path, 'r') as file:
+        for line in file:
+            count += line.count(word)
+    return count
