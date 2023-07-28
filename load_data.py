@@ -19,3 +19,14 @@ def load_edf_data(subject_p,recording_id_p):
 
   with open(new_filename, 'wb') as f:
       f.write(response.content)
+
+def load_patient_seizures (subject_p) :
+  new_filename_s = get_patient_seizures_path(subject_p)
+  if not (os.path.exists(get_subject_directory(subject_p))) :
+    os.mkdir(get_subject_directory(subject_p))
+
+  FILE_S = 'chb'+subject_p+'-summary.txt' # <-- load seizures start and end times
+  filename_s = 'chb'+subject_p+'/' + FILE_S +'?download'
+  response_s = requests.get(url + filename_s)
+  with open(new_filename_s, 'wb') as f:
+      f.write(response_s.content)
