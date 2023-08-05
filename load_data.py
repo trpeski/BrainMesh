@@ -30,3 +30,15 @@ def load_patient_seizures (subject_p) :
   response_s = requests.get(url + filename_s)
   with open(new_filename_s, 'wb') as f:
       f.write(response_s.content)
+
+def load_dataframe(filename):
+  # Load the EDF file into an MNE Raw object
+  raw = mne.io.read_raw_edf(get_base_path()+filename)  # CHANGE PATH FOR YOUR CASE
+
+  # Extract signal data and save to CSV file
+  data, times = raw[:, :]
+  channels = raw.ch_names
+  channels.sort()
+  header = ','.join(channels)
+  data = pd.DataFrame(data.T, columns=header.split(','))
+  return (data, channels)
