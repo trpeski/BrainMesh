@@ -1,3 +1,11 @@
+base_path = '/content/'
+
+def set_base_path (new_base_path) :
+  base_path = new_base_path
+
+def get_base_path () :
+  return base_path
+
 def get_subject_directory (subject_p) :
   return f'subject_{subject_p}'
 
